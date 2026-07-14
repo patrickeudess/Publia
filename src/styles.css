@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { @apply border-slate-200; }
+  html { scroll-behavior: smooth; }
+  body { @apply m-0 bg-paper font-sans text-ink antialiased; }
+  button, a, input, select, textarea { @apply outline-none; }
+  button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { @apply ring-2 ring-brand-500 ring-offset-2; }
+}
+@layer components {
+  .container { @apply mx-auto w-full max-w-7xl px-5 sm:px-8; }
+  .h-18 { height: 4.5rem; }
+  .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-xl bg-brand-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-900 disabled:cursor-not-allowed disabled:opacity-60; }
+  .btn-secondary { @apply inline-flex items-center justify-center gap-2 rounded-xl border bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-brand-200 hover:bg-brand-50; }
+  .btn-large { @apply min-h-12 px-6 py-3; }
+  .btn-icon { @apply inline-flex h-10 w-10 items-center justify-center rounded-xl border bg-white text-slate-500 transition hover:border-brand-200 hover:bg-brand-50 hover:text-brand-700; }
+  .eyebrow { @apply inline-flex items-center gap-2 rounded-full border border-brand-100 bg-brand-50 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand-700; }
+  .section { @apply py-20 sm:py-28; }
+  .section-heading { @apply mx-auto max-w-2xl text-center; }
+  .section-heading h2 { @apply mt-5 text-3xl font-bold tracking-tight sm:text-5xl; }
+  .section-heading p { @apply mt-5 text-base leading-7 text-slate-600 sm:text-lg; }
+  .card { @apply rounded-2xl border bg-white p-7 shadow-sm; }
+  .icon-box { @apply grid h-12 w-12 place-items-center rounded-xl bg-brand-50 text-brand-700; }
+  .icon-box svg { @apply h-6 w-6; }
+  .field { @apply grid gap-2 text-sm font-medium text-slate-700; }
+  .field input, .field textarea, .field select, .input { @apply min-h-11 rounded-xl border bg-white px-3.5 py-2.5 text-sm font-normal text-ink placeholder:text-slate-400 transition focus:border-brand-500 focus:ring-2 focus:ring-brand-100; }
+  .field textarea { @apply resize-y; }
+  .field small { @apply text-xs font-normal text-red-600; }
+  .field em { @apply text-xs font-normal not-italic text-slate-400; }
+  .error-box { @apply rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-sm text-red-700; }
+  .success-box { @apply rounded-xl border border-emerald-100 bg-emerald-50 px-4 py-3 text-sm text-emerald-700; }
+  .side-link { @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-brand-50 hover:text-brand-800; }
+  .side-link svg { @apply h-5 w-5; }
+  .side-link-active { @apply bg-brand-50 text-brand-800; }
+  .menu-item { @apply flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm hover:bg-slate-50; }
+  .stat-card { @apply flex items-center gap-4 rounded-2xl border bg-white p-5; }
+  .stat-card p { @apply text-sm text-slate-500; }
+  .stat-card strong { @apply mt-1 block text-2xl; }
+  .stat-icon { @apply grid h-11 w-11 place-items-center rounded-xl bg-brand-50 text-brand-700; }
+  .stat-icon svg { @apply h-5 w-5; }
+  .form-section { @apply rounded-2xl border bg-white p-5 sm:p-7; }
+  .form-section h2 { @apply text-lg font-semibold; }
+  .form-section > p { @apply mt-1 text-sm text-slate-500; }
+  .toggle-row { @apply flex items-center justify-between gap-4 rounded-xl border p-4; }
+  .toggle-row span { @apply grid gap-1; }
+  .toggle-row strong { @apply text-sm; }
+  .toggle-row small { @apply text-xs font-normal text-slate-500; }
+  .toggle-row input { @apply h-5 w-5 accent-brand-700; }
+  .social-link { @apply inline-flex items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-medium text-slate-600 hover:border-brand-200 hover:text-brand-700; }
+  .social-link svg, .share-button svg { @apply h-4 w-4; }
+  .share-button { @apply flex items-center justify-center gap-2 rounded-xl border bg-white px-3 py-3 text-xs font-semibold text-slate-600 transition hover:border-brand-200 hover:text-brand-700; }
+}
+.hero-grid { background-image: linear-gradient(rgba(15,118,110,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(15,118,110,.05) 1px,transparent 1px); background-size: 44px 44px; mask-image: linear-gradient(to bottom,black,transparent 80%); }
+.auth-pattern { background-image: radial-gradient(circle at 2px 2px,white 1px,transparent 0); background-size: 28px 28px; }
