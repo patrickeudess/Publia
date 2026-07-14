@@ -1,0 +1,10 @@
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { Brand } from '../components/Brand'
+import { useAuth } from '../hooks/useAuth'
+
+export function ResetPasswordPage(){
+  const {updatePassword,demoMode}=useAuth();const [password,setPassword]=useState('');const [confirm,setConfirm]=useState('');const [message,setMessage]=useState('');const [error,setError]=useState('');const [loading,setLoading]=useState(false)
+  const submit=async(e:React.FormEvent)=>{e.preventDefault();setError('');if(password.length<8){setError('Le mot de passe doit contenir au moins 8 caractères.');return}if(password!==confirm){setError('Les deux mots de passe ne correspondent pas.');return}setLoading(true);try{await updatePassword(password);setMessage(demoMode?'Le mode démo ne modifie aucun mot de passe.':'Votre mot de passe a été mis à jour.')}catch(err){setError(err instanceof Error?err.message:'Impossible de modifier le mot de passe.')}finally{setLoading(false)}}
+  return <main className="grid min-h-screen place-items-center bg-slate-50 p-5"><section className="w-full max-w-md rounded-3xl border bg-white p-8 shadow-soft"><Brand/><h1 className="mt-9 text-3xl font-bold">Nouveau mot de passe</h1><p className="mt-3 text-sm leading-6 text-slate-500">Choisissez un mot de passe unique d’au moins 8 caractères.</p><form onSubmit={submit} className="mt-7 grid gap-5"><label className="field"><span>Nouveau mot de passe</span><input type="password" autoComplete="new-password" required value={password} onChange={e=>setPassword(e.target.value)}/></label><label className="field"><span>Confirmer le mot de passe</span><input type="password" autoComplete="new-password" required value={confirm} onChange={e=>setConfirm(e.target.value)}/></label>{message&&<p className="success-box">{message}</p>}{error&&<p className="error-box">{error}</p>}<button className="btn-primary btn-large" disabled={loading}>{loading?'Mise à jour…':'Mettre à jour'}</button></form>{message&&<Link to="/dashboard" className="mt-6 block text-center text-sm font-semibold text-brand-700">Continuer vers Publia</Link>}</section></main>
+}
