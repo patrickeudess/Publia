@@ -1,5 +1,6 @@
 import { ArrowRight, BadgeCheck, BarChart3, BookOpen, BriefcaseBusiness, Building2, Check, Copy, GraduationCap, HeartHandshake, Link2, Palette, QrCode, Rocket, ShieldCheck, Sparkles, Users } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
 import { Brand } from '../components/Brand'
 
 const steps = [
@@ -10,6 +11,16 @@ const steps = [
 const audiences = [{ icon: GraduationCap, label: 'Étudiants' }, { icon: BriefcaseBusiness, label: 'Consultants' }, { icon: HeartHandshake, label: 'ONG' }, { icon: BookOpen, label: 'Chercheurs' }, { icon: Building2, label: 'Entrepreneurs' }]
 
 export function HomePage() {
+  useEffect(() => {
+    const scrollToHash = () => {
+      const id = decodeURIComponent(window.location.hash.slice(1))
+      if (!id) return
+      window.requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }))
+    }
+    scrollToHash()
+    window.addEventListener('hashchange', scrollToHash)
+    return () => window.removeEventListener('hashchange', scrollToHash)
+  }, [])
   return <>
     <section className="relative overflow-hidden bg-white"><div className="hero-grid absolute inset-0 opacity-50" /><div className="container relative grid min-h-[720px] items-center gap-14 py-20 lg:grid-cols-[1.05fr_.95fr]">
       <div><span className="eyebrow"><Sparkles className="h-4 w-4" />Pensé pour les créateurs qui veulent aller vite</span><h1 className="mt-6 max-w-3xl text-5xl font-bold leading-[1.06] tracking-[-.04em] text-ink sm:text-6xl lg:text-7xl">Publiez et partagez votre application <span className="text-brand-600">en quelques minutes.</span></h1><p className="mt-7 max-w-2xl text-lg leading-8 text-slate-600">Transformez un lien technique en une page professionnelle, claire et facile à partager — sans maîtriser l’hébergement web.</p><div className="mt-9 flex flex-col gap-3 sm:flex-row"><Link to="/inscription" className="btn-primary btn-large">Publier mon application<ArrowRight className="h-5 w-5" /></Link><Link to="/p/afridata-ready" className="btn-secondary btn-large">Voir un exemple</Link></div><div className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-500"><span className="flex items-center gap-2"><Check className="h-4 w-4 text-brand-600" />Aucune carte bancaire</span><span className="flex items-center gap-2"><Check className="h-4 w-4 text-brand-600" />Prêt en 3 étapes</span></div></div>
@@ -21,3 +32,4 @@ export function HomePage() {
     <footer className="border-t bg-white"><div className="container flex flex-col items-center justify-between gap-5 py-8 sm:flex-row"><Brand/><p className="text-sm text-slate-500">© {new Date().getFullYear()} Publia. Fait pour donner de l’élan à vos idées.</p></div></footer>
   </>
 }
+
